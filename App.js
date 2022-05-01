@@ -1,20 +1,41 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Commponent } from 'react';
+import { ScrollView, Platform, Flatlist, SectionList, RefreshControl, Text, View , Pressable} from 'react-native';
+import HomeScreen from './HomeScreen';
+import CityChoice from './CityChoice';
+import CityScreen from './CityScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import 'react-native-gesture-handler';
 
-export default function App() {
+const Stack = createStackNavigator();
+
+function MyStack () {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+
+    <Stack.Navigator initialRouteName='HomeScreen' screenOptions={{headerStyle: {backgroundColor:'white'}, headerTitleStyle: {fontWeight: '500'}}}>
+      <Stack.Screen name='Weather' component={HomeScreen} options={{ headerShown: false }}/>
+      <Stack.Screen name='CityChoice' component={CityChoice} options={{ headerShown: false }}/>
+      <Stack.Screen name='CityScreen' component={CityScreen} options={{ headerShown: false }}/>
+      
+
+    </Stack.Navigator>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App (){
+
+    return(
+      <NavigationContainer>
+        <MyStack />
+      </NavigationContainer>
+    );
+  }
+
+  
+
+
+
+
+
+
+  
